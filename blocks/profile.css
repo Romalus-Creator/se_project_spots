@@ -1,0 +1,60 @@
+.profile {
+}
+
+.profile__section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.profile__bio {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 auto 0 0;
+}
+
+.profile__image {
+  padding: 0 20px 0 0;
+}
+
+.profile__texts {
+}
+
+.profile__text {
+}
+
+.profile__name {
+}
+
+.profile__description {
+}
+
+.profile__edits {
+  display: flex;
+  flex-direction: row;
+}
+
+.profile__pencil {
+}
+
+.profile__edit {
+}
+
+.profile__button {
+  align-self: flex-end;
+  display: flex;
+  flex-direction: row;
+  background-color: #212121;
+  border-radius: 8px;
+  margin-left: auto;
+}
+
+.profile__plus {
+  color: #fcf5e5;
+  padding: 0 8px 0 0;
+}
+
+.profile__button-text {
+  color: #fcf5e5;
+}
