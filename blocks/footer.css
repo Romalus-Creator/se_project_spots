@@ -1,3 +1,13 @@
 .footer {
-  grid-area: footer;
+  margin: 60px auto 0;
+  color: #212121b2;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 627px) {
+  .footer {
+    font-size: 16px;
+    line-height: 1;
+  }
 }
