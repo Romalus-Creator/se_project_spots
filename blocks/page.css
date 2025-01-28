@@ -9,12 +9,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* grid-template-columns: 0.5fr repeat(3, 1fr) 0.5fr;
-  grid-template-rows: 0.5fr repeat(3, 1fr) 0.5fr;
-  grid-template-areas:
-    "header header header header header"
-    ". profile profile profile ."
-    ". posts posts posts ."
-    ". posts posts posts ."
-    "footer footer footer footer footer"; */
+}
+
+.page__section {
+  max-width: 1280px;
+  margin: 0 auto;
 }

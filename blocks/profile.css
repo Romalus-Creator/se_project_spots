@@ -1,33 +1,49 @@
+/* Add Poppins font for this block!!! */
 .profile {
+  margin: 34px auto 20px auto;
+  border-bottom: 1px solid #212121;
+  font-family: Poppins, Arial, sans-serif;
+  line-height: 16px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #212121;
 }
 
 .profile__section {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  padding: 0 0 20px 0;
 }
 
 .profile__bio {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  margin: 0 auto 0 0;
+  column-gap: 20px;
 }
 
 .profile__image {
-  padding: 0 20px 0 0;
+  width: 190px;
+  height: 190px;
 }
 
 .profile__texts {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .profile__text {
 }
 
 .profile__name {
+  line-height: 32px;
+  font-size: 32px;
+  font-weight: 500;
 }
 
 .profile__description {
+  line-height: 16px;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .profile__edits {
@@ -39,6 +55,7 @@
 }
 
 .profile__edit {
+  margin: 0;
 }
 
 .profile__button {
@@ -48,13 +65,19 @@
   background-color: #212121;
   border-radius: 8px;
   margin-left: auto;
+  min-width: 149px;
+  justify-content: center;
 }
 
-.profile__plus {
+.profile__plus-button {
   color: #fcf5e5;
   padding: 0 8px 0 0;
+  margin: 0;
+  padding: 20px 8px 20px 0;
 }
 
 .profile__button-text {
   color: #fcf5e5;
+  margin: 0;
+  padding: 18px 0;
 }

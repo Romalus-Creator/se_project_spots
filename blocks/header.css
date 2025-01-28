@@ -4,8 +4,10 @@
   margin: 0;
   display: flex;
   justify-content: center;
-  /* grid-area: header; */
 }
 
 .header__logo {
+  width: 94px;
+  height: 26px;
+  margin: 10px auto;
 }
