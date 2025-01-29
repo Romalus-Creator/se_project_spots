@@ -22,14 +22,19 @@
   padding: 12px 0 0 0;
   /* align-content: flex-end; */
   text-overflow: ellipsis;
-  white-space: nowrap;
+  /* white-space: nowrap; */
   /* overflow: hidden; */
 }
 
 .post__text {
+  font-weight: 500;
   margin: 0 auto 0 0;
-  font-size: 24px;
-  line-height: 1;
+  font-size: 20px;
+  line-height: 24px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 412px;
 }
 
 .post__like-btn {
@@ -41,6 +46,7 @@
   height: 20px;
   border: none;
   padding: 0;
+  cursor: pointer;
 }
 
 .post__like-btn:hover {
@@ -59,10 +65,12 @@
 
   .post__text {
     font-size: 16px;
+    line-height: 16px;
   }
 
   .post__like-btn {
     width: 20px;
-    height: 17px;
+    /* I am unsure why a height of 18px makes the right side of the heart icon slightly hidden. */
+    height: 18px;
   }
 }

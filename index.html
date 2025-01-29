@@ -6,8 +6,8 @@
     <meta name="author" content="Roman Ehrhardt" />
     <meta name="description" content="Spots social media concept." />
     <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <link rel="shortcut icon" href="./favicon.ico" />
     <link rel="stylesheet" href="./pages/index.css" />
-    <!-- TODO DOUBLE CHECK IF YOU NEED TO LINK FONTS CSS HERE -->
     <link rel="stylesheet" href="./vendor/fonts.css" />
     <title>Spots App</title>
   </head>
@@ -22,37 +22,35 @@
       </header>
       <main class="main">
         <section class="profile page__section">
-          <div class="profile__section">
-            <div class="profile__bio">
-              <img
-                class="profile__image"
-                src="./images/avatar.jpg"
-                alt="A black and white portrait photo of Bessie Coleman."
-              />
-              <div class="profile__texts">
-                <div class="profile__text">
-                  <h1 class="profile__name">Bessie Coleman</h1>
-                  <p class="profile__description">Civil Aviator</p>
-                </div>
-                <button class="profile__edit-btn" type="button">
-                  <img
-                    class="profile__pencil"
-                    src="./images/pencil_icon.svg"
-                    alt="A silhouette icon of a pencil."
-                  />
-                  <h2 class="profile__edit">Edit Profile</h2>
-                </button>
+          <div class="profile__bio">
+            <img
+              class="profile__image"
+              src="./images/avatar.jpg"
+              alt="A black and white portrait photo of Bessie Coleman."
+            />
+            <div class="profile__texts">
+              <div class="profile__text">
+                <h1 class="profile__name">Bessie Coleman</h1>
+                <p class="profile__description">Civil Aviator</p>
               </div>
+              <button class="profile__edit-btn" type="button">
+                <img
+                  class="profile__pencil"
+                  src="./images/pencil_icon.svg"
+                  alt="A silhouette icon of a pencil."
+                />
+                <span class="profile__edit">Edit Profile</span>
+              </button>
             </div>
-            <button class="profile__btn" type="button">
-              <img
-                class="profile__plus-btn"
-                src="./images/plus_icon.svg"
-                alt="A plus sign"
-              />
-              <p class="profile__btn-text">New Post</p>
-            </button>
           </div>
+          <button class="profile__btn" type="button">
+            <img
+              class="profile__plus-btn"
+              src="./images/plus_icon.svg"
+              alt="A plus sign"
+            />
+            <span class="profile__btn-text">New Post</span>
+          </button>
         </section>
         <section class="posts page__section">
           <div class="post">
@@ -62,7 +60,7 @@
               alt="A snowy mountainside lodge"
             />
             <div class="post__description">
-              <p class="post__text">Val Thorens</p>
+              <h2 class="post__text">Val Thorens</h2>
               <button class="post__like-btn" type="button"></button>
             </div>
           </div>
@@ -73,7 +71,7 @@
               alt="A restaurant exterior"
             />
             <div class="post__description">
-              <p class="post__text">Restaurant terrace</p>
+              <h2 class="post__text">Restaurant terrace</h2>
               <button class="post__like-btn" type="button"></button>
             </div>
           </div>
@@ -84,7 +82,7 @@
               alt="People sitting at their outdoor cafe tables."
             />
             <div class="post__description">
-              <p class="post__text">An outdoor cafe</p>
+              <h2 class="post__text">An outdoor cafe</h2>
               <button class="post__like-btn" type="button"></button>
             </div>
           </div>
@@ -95,7 +93,7 @@
               alt="A hanging metal bridge"
             />
             <div class="post__description">
-              <p class="post__text">A very long bridge, over the forest...</p>
+              <h2 class="post__text">A very long bridge, over the forest...</h2>
               <button class="post__like-btn" type="button"></button>
             </div>
           </div>
@@ -106,7 +104,7 @@
               alt="An enclosed pedestrian tunnel"
             />
             <div class="post__description">
-              <p class="post__text">Tunnel with morning light</p>
+              <h2 class="post__text">Tunnel with morning light</h2>
               <button class="post__like-btn" type="button"></button>
             </div>
           </div>
@@ -117,13 +115,13 @@
               alt="A wood cabin in the snowy forest"
             />
             <div class="post__description">
-              <p class="post__text">Mountain house</p>
+              <h2 class="post__text">Mountain house</h2>
               <button class="post__like-btn" type="button"></button>
             </div>
           </div>
         </section>
       </main>
-      <footer class="footer page__section">2025 &copy Spots</footer>
+      <footer class="footer page__section">2025 &copy; Spots</footer>
     </div>
   </body>
 </html>

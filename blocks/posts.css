@@ -8,6 +8,9 @@
   justify-content: center;
 }
 
+.posts__list {
+}
+
 @media screen and (max-width: 627px) {
   .posts {
     grid-template-columns: repeat(auto-fit, 288px);
