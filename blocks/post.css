@@ -1,6 +1,7 @@
 .post {
   display: flex;
   flex-direction: column;
+  list-style: none;
   /* align-items: center; */
   /* max-width: 413px; */
 }
@@ -22,8 +23,8 @@
   padding: 12px 0 0 0;
   /* align-content: flex-end; */
   text-overflow: ellipsis;
-  /* white-space: nowrap; */
-  /* overflow: hidden; */
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .post__text {
@@ -34,7 +35,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 412px;
+  max-width: 413px;
 }
 
 .post__like-btn {
