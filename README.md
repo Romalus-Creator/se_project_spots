@@ -2,13 +2,23 @@
 
 ### Overview
 
+- Project Description
+- Project Improvements
 - Intro
 - Figma
 - Images
 
+**Project Description**
+
+This is a responsive social media web page made with only HTML5 & CSS3 (for now!). It was a project aimed at combining all past CSS knowledge learned in my TripleTen courses thus far, as well as structure BEM blocks appropriately and ensure clean HTML pracitces.
+
+**Project Improvements**
+
+Although it is currently a responsive webpage, it is not exactly a 'social' webpage since users cannot engage with the social media posts currently on the page. I imagine adding some sort of interaction with the like button and profile edit buttons would enhance the page more.
+
 **Intro**
 
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.
+This project is made so all the elements are displayed correctly on popular screen sizes.
 
 **Figma**
 
@@ -16,6 +26,7 @@ This project is made so all the elements are displayed correctly on popular scre
 
 **Images**
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster.
+Exported images directly from Figma — recommended as that is how the work world will operate.
 
-Good luck and have fun!
+**Video for Project Submission**
+https://drive.google.com/file/d/1BpoktZKyHTkBX-DHPyhqXT1eVP4ul3wc/view?usp=drive_link
