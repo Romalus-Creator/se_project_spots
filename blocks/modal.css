@@ -19,6 +19,10 @@
   visibility: visible;
 }
 
+.modal__closed {
+  visibility: hidden;
+}
+
 .modal__box {
   display: flex;
   flex-direction: column;
