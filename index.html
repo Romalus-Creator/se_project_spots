@@ -54,74 +54,19 @@
         </section>
         <section class="posts page__section">
           <ul class="posts__list">
-            <li class="post">
+            <template id="card-template">
+              <li class="post">
               <img
                 class="post__image"
-                src="./images/1-photo-by-moritz-feldmann-from-pexels.jpg"
-                alt="A snowy mountainside lodge"
+                src=""
+                alt=""
               />
               <div class="post__description">
-                <h2 class="post__text">Val Thorens</h2>
+                <h2 class="post__text"></h2>
                 <button class="post__like-btn" type="button"></button>
               </div>
             </li>
-            <li class="post">
-              <img
-                class="post__image"
-                src="./images/2-photo-by-ceiline-from-pexels.jpg"
-                alt="A restaurant exterior"
-              />
-              <div class="post__description">
-                <h2 class="post__text">Restaurant terrace</h2>
-                <button class="post__like-btn" type="button"></button>
-              </div>
-            </li>
-            <li class="post">
-              <img
-                class="post__image"
-                src="./images/3-photo-by-tubanur-dogan-from-pexels.jpg"
-                alt="People sitting at their outdoor cafe tables."
-              />
-              <div class="post__description">
-                <h2 class="post__text">An outdoor cafe</h2>
-                <button class="post__like-btn" type="button"></button>
-              </div>
-            </li>
-            <li class="post">
-              <img
-                class="post__image"
-                src="./images/4-photo-by-maurice-laschet-from-pexels.jpg"
-                alt="A hanging metal bridge"
-              />
-              <div class="post__description">
-                <h2 class="post__text">
-                  A very long bridge, over the forest...
-                </h2>
-                <button class="post__like-btn" type="button"></button>
-              </div>
-            </li>
-            <li class="post">
-              <img
-                class="post__image"
-                src="./images/5-photo-by-van-anh-nguyen-from-pexels.jpg"
-                alt="An enclosed pedestrian tunnel"
-              />
-              <div class="post__description">
-                <h2 class="post__text">Tunnel with morning light</h2>
-                <button class="post__like-btn" type="button"></button>
-              </div>
-            </li>
-            <li class="post">
-              <img
-                class="post__image"
-                src="./images/6-photo-by-moritz-feldmann-from-pexels.jpg"
-                alt="A wood cabin in the snowy forest"
-              />
-              <div class="post__description">
-                <h2 class="post__text">Mountain house</h2>
-                <button class="post__like-btn" type="button"></button>
-              </div>
-            </li>
+          </template>
           </ul>
         </section>
       </main>
@@ -133,14 +78,15 @@
             <button type="submit" class="modal__close-btn"></button>
           </div>
           <form class="modal__form" name="edit-profile">
-            <label for="Name" class="modal__label">Name </label>
-            <input type="text" id="Name" class="modal__input" placeholder="Name" />
-            <label for="Description" class="modal__label">Description </label>
-            <input type="text" id="Description" class="modal__input" placeholder="Description" />
+            <label for="profile-name-input" class="modal__label">Name </label>
+            <input type="text" id="profile-name-input" class="modal__input" placeholder="Name" />
+            <label for="profile-description-input" class="modal__label">Description </label>
+            <input type="text" id="profile-description-input" class="modal__input" placeholder="Description" />
+            <button type="submit" class="modal__submit-btn">Save</button>
           </form>
-          <button type="submit" class="modal__submit-btn">Save</buttonCivil Aviatordiv>
-      </div>
+        </div>
     </div>
     <script src="./scripts/index.js" defer></script>
   </body>
 </html>
+ 

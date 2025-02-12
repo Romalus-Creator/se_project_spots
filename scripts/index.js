@@ -42,40 +42,60 @@ let initialCards = {
   },
 };
 
+const cardTemplate = document.querySelector("#card-template");
+// const cardImage = cardTemplate.querySelector("post__image");
+// const cardText = cardTemplate.querySelector("post__text");
+
+// console.log(cardTemplate);
+
+function getCardElement(data) {
+  const cardElement = cardTemplate.content
+    .querySelector(".card")
+    .cloneNode(true);
+  return cardElement;
+}
+
 //profile__edit-btn .modal__opened
-const editProfileForm = document.querySelector("#edit-modal");
+const editModal = document.querySelector("#edit-modal");
 const editBtn = document.querySelector(".profile__edit-btn");
 const closeBtn = document.querySelector(".modal__close-btn");
-//const submitBtn = document.querySelector(".modal__submit-btn");
 
-// function testClick() {
-//   console.log("clicked button");
-// }
+const mainSection = document.querySelector(".main");
+const profileName = mainSection.querySelector(".profile__name");
+const profileDesc = mainSection.querySelector(".profile__description");
+const newProfileName = editModal.querySelector("#profile-name-input");
+const newProfileDesc = editModal.querySelector("#profile-description-input");
+
+const profileFormElement = editModal.querySelector(".modal__form");
+const submitBtn = editModal.querySelector(".modal__submit-btn");
+
+function submitModalForm(event) {
+  event.preventDefault();
+  // console.log("clicked button");
+  profileName.textContent = newProfileName.value;
+  profileDesc.textContent = newProfileDesc.value;
+  closeModalForm();
+}
 
 function openModalForm() {
-  editProfileForm.classList.remove("modal__closed");
-  editProfileForm.classList.add("modal__opened");
+  newProfileName.value = profileName.textContent;
+  newProfileDesc.value = profileDesc.textContent;
+  editModal.classList.remove("modal__closed");
+  editModal.classList.add("modal__opened");
 }
 
 function closeModalForm() {
-  editProfileForm.classList.remove("modal__opened");
-  editProfileForm.classList.add("modal__closed");
+  editModal.classList.remove("modal__opened");
+  editModal.classList.add("modal__closed");
 }
-
-//how to put closeModalForm func inside this func?
 
 editBtn.addEventListener("click", openModalForm);
 
 closeBtn.addEventListener("click", closeModalForm);
 
-// submitBtn.addEventListener("click", function submitModalForm(evt) {
-//   editProfileForm.classList.remove("modal__opened");
-//   editProfileForm.classList.add("modal__closed");
-//   evt.preventDefault();
-//   console.log(evt.target);
-// });
+submitBtn.addEventListener("click", submitModalForm);
 
-// console.log(editProfileForm);
-// console.log(editBtn);
-
-//need to preventDefault() modal after hitting submitt button -right?
+for (let i = 0; i < initialCards.length; i++) {
+  getCardElement(initialCards[i]);
+  console.log(cardElement);
+}
