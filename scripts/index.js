@@ -1,59 +1,34 @@
-let initialCards = {
-  obj1: {
+const initialCards = [
+  {
     name: "Val Thorens",
-    link: new URL(
-      "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg"
-    ),
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
   },
 
-  obj2: {
+  {
     name: "Restaurant terrace",
-    link: new URL(
-      "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg"
-    ),
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
   },
 
-  obj3: {
+  {
     name: "An outdoor cafe",
-    link: new URL(
-      "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg"
-    ),
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
   },
 
-  obj4: {
+  {
     name: "A very long bridge, over the forest and through the trees",
-    link: new URL(
-      "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg"
-    ),
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
   },
 
-  obj5: {
+  {
     name: "Tunnel with morning light",
-    link: new URL(
-      "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg"
-    ),
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
   },
 
-  obj6: {
+  {
     name: "Mountain house",
-    link: new URL(
-      "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg"
-    ),
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
   },
-};
-
-const cardTemplate = document.querySelector("#card-template");
-// const cardImage = cardTemplate.querySelector("post__image");
-// const cardText = cardTemplate.querySelector("post__text");
-
-// console.log(cardTemplate);
-
-function getCardElement(data) {
-  const cardElement = cardTemplate.content
-    .querySelector(".card")
-    .cloneNode(true);
-  return cardElement;
-}
+];
 
 //profile__edit-btn .modal__opened
 const editModal = document.querySelector("#edit-modal");
@@ -95,7 +70,36 @@ closeBtn.addEventListener("click", closeModalForm);
 
 submitBtn.addEventListener("click", submitModalForm);
 
+const cardTemplate = document.querySelector("#post-template");
+const cardsList = document.querySelector(".posts__list");
+
+function getCardElement(initialCards) {
+  // console.log(initialCards);
+  const cardElement = cardTemplate.content
+    .querySelector(".post")
+    .cloneNode(true);
+
+  // select the card title and image and store them in variables
+  // set the image’s src attribute to the image to the link field of the object
+  const cardElementImage = cardElement.querySelector(".post__image");
+  const cardElementText = cardElement.querySelector(".post__text");
+  const cardElementAlt = cardElement.querySelector(".post__text");
+
+  // set the image’s src attribute to the image to the link field of the object
+  // set the image’s alt text to the name field of the object
+  // set the card’s title to the name field of the object, too
+  cardElementImage.src = initialCards.link;
+  cardElementText.textContent = initialCards.name;
+  cardElementText.alt = initialCards.name;
+  console.log(cardElementImage);
+  // console.log(cardElementText);
+
+  // return the ready HTML element with the filled-in data
+  return cardElement;
+}
+
 for (let i = 0; i < initialCards.length; i++) {
-  getCardElement(initialCards[i]);
-  console.log(cardElement);
+  cardResult = getCardElement(initialCards[i]);
+  // Use the appropriate built-in DOM method to add this HTML element to the page.
+  cardsList.append(cardResult);
 }

@@ -54,19 +54,19 @@
         </section>
         <section class="posts page__section">
           <ul class="posts__list">
-            <template id="card-template">
+            <template id="post-template">
               <li class="post">
-              <img
-                class="post__image"
-                src=""
-                alt=""
-              />
-              <div class="post__description">
-                <h2 class="post__text"></h2>
-                <button class="post__like-btn" type="button"></button>
-              </div>
-            </li>
-          </template>
+                <img class="post__image" src="" alt="" />
+                <div class="post__description">
+                  <h2 class="post__text"></h2>
+                  <button
+                    aria-label="Like card"
+                    class="post__like-btn"
+                    type="button"
+                  ></button>
+                </div>
+              </li>
+            </template>
           </ul>
         </section>
       </main>
@@ -79,14 +79,26 @@
           </div>
           <form class="modal__form" name="edit-profile">
             <label for="profile-name-input" class="modal__label">Name </label>
-            <input type="text" id="profile-name-input" class="modal__input" placeholder="Name" />
-            <label for="profile-description-input" class="modal__label">Description </label>
-            <input type="text" id="profile-description-input" class="modal__input" placeholder="Description" />
+            <input
+              type="text"
+              id="profile-name-input"
+              class="modal__input"
+              placeholder="Name"
+            />
+            <label for="profile-description-input" class="modal__label"
+              >Description
+            </label>
+            <input
+              type="text"
+              id="profile-description-input"
+              class="modal__input"
+              placeholder="Description"
+            />
             <button type="submit" class="modal__submit-btn">Save</button>
           </form>
         </div>
+      </div>
     </div>
     <script src="./scripts/index.js" defer></script>
   </body>
 </html>
- 
