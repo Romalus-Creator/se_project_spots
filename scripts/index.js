@@ -96,8 +96,15 @@ function getCardElement(initialCards) {
   return cardElement;
 }
 
-for (let i = 0; i < initialCards.length; i++) {
-  cardResult = getCardElement(initialCards[i]);
+initialCards.forEach((element) => {
+  cardResult = getCardElement(element);
   // Use the appropriate built-in DOM method to add this HTML element to the page.
   cardsList.append(cardResult);
-}
+});
+
+// OLD FOR LOOP THAT WAS REMOVED FOR THE FOREACH ARRAY FUNCTION.
+//  for (let i = 0; i < initialCards.length; i++) {
+//   cardResult = getCardElement(initialCards[i]);
+//   // Use the appropriate built-in DOM method to add this HTML element to the page.
+//   cardsList.append(cardResult);
+// }
