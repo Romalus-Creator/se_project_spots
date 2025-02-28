@@ -70,8 +70,8 @@
 }
 
 .modal__close-btn:hover {
+  transition: 0.25s background;
   opacity: 100%;
-  transition: 0.25s;
 }
 
 .modal__form {

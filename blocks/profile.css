@@ -86,7 +86,7 @@
   line-height: 1;
 }
 
-.profile__btn {
+.profile__post-btn {
   align-self: flex-end;
   display: flex;
   flex-direction: row;
@@ -100,7 +100,7 @@
   cursor: pointer;
 }
 
-.profile__btn:hover {
+.profile__post-btn:hover {
   opacity: 80%;
   transition: 1s;
 }
@@ -112,7 +112,7 @@
   padding: 20px 8px 20px 0;
 }
 
-.profile__btn-text {
+.profile__post-btn-text {
   color: #fcf5e5;
   margin: 0;
   padding: 18px 0;
@@ -137,7 +137,7 @@
     height: 80px;
   }
 
-  .profile__btn {
+  .profile__post-btn {
     align-self: center;
     width: 100%;
   }

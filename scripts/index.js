@@ -30,48 +30,7 @@ const initialCards = [
   },
 ];
 
-//profile__edit-btn .modal__opened
-const editModal = document.querySelector("#edit-modal");
-const editBtn = document.querySelector(".profile__edit-btn");
-const closeBtn = document.querySelector(".modal__close-btn");
-
-const mainSection = document.querySelector(".main");
-const profileName = mainSection.querySelector(".profile__name");
-const profileDesc = mainSection.querySelector(".profile__description");
-const newProfileName = editModal.querySelector("#profile-name-input");
-const newProfileDesc = editModal.querySelector("#profile-description-input");
-
-const profileFormElement = editModal.querySelector(".modal__form");
-const submitForm = editModal.querySelector(".modal__form");
-
-//It already looks cleaner! Thank you for the suggestion, code reviewer!
-function fillProfileForm() {
-  newProfileName.value = profileName.textContent;
-  newProfileDesc.value = profileDesc.textContent;
-}
-
-function openModalForm() {
-  editModal.classList.remove("modal--closed");
-  fillProfileForm();
-}
-
-function closeModalForm() {
-  editModal.classList.add("modal--closed");
-}
-
-function submitModalForm(event) {
-  profileName.textContent = newProfileName.value;
-  profileDesc.textContent = newProfileDesc.value;
-  event.preventDefault();
-  closeModalForm();
-}
-
-editBtn.addEventListener("click", openModalForm);
-
-closeBtn.addEventListener("click", closeModalForm);
-
-submitForm.addEventListener("submit", submitModalForm);
-
+// ============================= LOAD POSTS ONTO PAGE =============================
 const cardTemplate = document.querySelector("#post-template");
 const cardsList = document.querySelector(".posts__list");
 
@@ -108,3 +67,81 @@ initialCards.forEach((element) => {
 //   // Use the appropriate built-in DOM method to add this HTML element to the page.
 //   cardsList.append(cardResult);
 // }
+
+/* TO DO TASK 2 OF 7:
+- DONE I need to 'invert' my functions. I currently have the fillProfileForm func tucked inside the openModalForm func, but it should be the opposite.
+- DONE Inverting the func's will allow me to use openModalForm in any fill'x'Form func - like the New Post Form that needs a func to open and close still.
+- DONE After checking that this works with the openModalForm func, invert the funcs for the closeModalForm.
+- I was able to abstract the open Modal fairly easily, but the close Modal is kicking my butt. I since there are two different div's with .modal class,
+I imagine I need to run down the 'list' of the two div's, search if .modal--closed class is active (or removed?), then return the .modal[i] to pass the close-btn event function to the correct modal.
+*/
+
+// ============================= ALL MODALS =============================
+const mainSection = document.querySelector(".main");
+const modal = [...document.querySelectorAll(".modal")];
+
+function openModalForm(modal) {
+  modal.classList.remove("modal--closed");
+  console.log(modal);
+}
+
+function closeModalForm(modal) {
+  modal.classList.add("modal--closed");
+  // console.log(modal);
+}
+
+// ============================= EDIT PROFILE MODAL =============================
+const editModal = document.querySelector("#edit-modal");
+const editBtn = document.querySelector(".profile__edit-btn");
+const editModalCloseBtn = [
+  ...document.querySelectorAll(".modal__close-btn"),
+][0];
+const profileName = mainSection.querySelector(".profile__name");
+const profileDesc = mainSection.querySelector(".profile__description");
+const newProfileName = editModal.querySelector("#profile-name-input");
+const newProfileDesc = editModal.querySelector("#profile-description-input");
+const profileFormElement = editModal.querySelector(".modal__form");
+const submitProfileEditForm = editModal.querySelector(".modal__form");
+
+editModalCloseBtn.addEventListener("click", () => {
+  closeModalForm(modal[0]);
+});
+
+function submitProfileForm(event) {
+  profileName.textContent = newProfileName.value;
+  profileDesc.textContent = newProfileDesc.value;
+  event.preventDefault();
+  closeModalForm();
+}
+
+editBtn.addEventListener("click", () => {
+  newProfileName.value = profileName.textContent;
+  newProfileDesc.value = profileDesc.textContent;
+  openModalForm(editModal);
+});
+
+submitProfileEditForm.addEventListener("submit", submitProfileForm);
+
+// ============================= NEW POST MODAL =============================
+const newPostModal = document.querySelector("#post-modal");
+const newPostBtn = document.querySelector(".profile__post-btn");
+const newPostModalCloseBtn = [
+  ...document.querySelectorAll(".modal__close-btn"),
+][1];
+
+console.log(newPostModalCloseBtn);
+
+newPostBtn.addEventListener("click", () => {
+  openModalForm(newPostModal);
+});
+
+newPostModalCloseBtn.addEventListener("click", () => {
+  closeModalForm(modal[1]);
+});
+
+/* TASK 3/7 TO DO:
+- copy the editProfile's SubmitForm lines of code to the New Post Modal section. Tweak the copied lines to work for the New Post Modal's 'submit' button.
+- adjust the editProfile's submitform code to work with the array of querySelectorAll for both submit btns. Similar to how I did the CloseBtn for both Modals.
+- prepend the card URL and descriptions to the front of the cardsArray (whatever the name of the new array will be).
+
+*/
