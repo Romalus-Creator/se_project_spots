@@ -1,4 +1,4 @@
-const initialCards = [
+let initialCards = [
   {
     name: "Val Thorens",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
@@ -34,7 +34,7 @@ const initialCards = [
 const cardTemplate = document.querySelector("#post-template");
 const cardsList = document.querySelector(".posts__list");
 
-function getCardElement(initialCards) {
+function getCardElement(initialCard) {
   const cardElement = cardTemplate.content
     .querySelector(".post")
     .cloneNode(true);
@@ -47,9 +47,9 @@ function getCardElement(initialCards) {
   // set the image’s src attribute to the image to the link field of the object
   // set the image’s alt text to the name field of the object
   // set the card’s title to the name field of the object, too
-  cardElementImage.src = initialCards.link;
-  cardElementText.textContent = initialCards.name;
-  cardElementImage.alt = initialCards.name;
+  cardElementImage.src = initialCard.link;
+  cardElementText.textContent = initialCard.name;
+  cardElementImage.alt = initialCard.name;
 
   // return the ready HTML element with the filled-in data
   return cardElement;
@@ -82,7 +82,6 @@ const modal = [...document.querySelectorAll(".modal")];
 
 function openModalForm(modal) {
   modal.classList.remove("modal--closed");
-  console.log(modal);
 }
 
 function closeModalForm(modal) {
@@ -107,20 +106,22 @@ editModalCloseBtn.addEventListener("click", () => {
   closeModalForm(modal[0]);
 });
 
-function submitProfileForm(event) {
-  profileName.textContent = newProfileName.value;
-  profileDesc.textContent = newProfileDesc.value;
-  event.preventDefault();
-  closeModalForm();
-}
-
 editBtn.addEventListener("click", () => {
   newProfileName.value = profileName.textContent;
   newProfileDesc.value = profileDesc.textContent;
   openModalForm(editModal);
 });
 
-submitProfileEditForm.addEventListener("submit", submitProfileForm);
+function submitProfileForm(event) {
+  event.preventDefault();
+  closeModalForm(modal[0]);
+}
+
+submitProfileEditForm.addEventListener("submit", () => {
+  profileName.textContent = newProfileName.value;
+  profileDesc.textContent = newProfileDesc.value;
+  submitProfileForm(event);
+});
 
 // ============================= NEW POST MODAL =============================
 const newPostModal = document.querySelector("#post-modal");
@@ -128,8 +129,9 @@ const newPostBtn = document.querySelector(".profile__post-btn");
 const newPostModalCloseBtn = [
   ...document.querySelectorAll(".modal__close-btn"),
 ][1];
-
-console.log(newPostModalCloseBtn);
+const submitNewPostForm = newPostModal.querySelector(".modal__form");
+const imageLink = newPostModal.querySelector("#image-link");
+const caption = newPostModal.querySelector("#caption");
 
 newPostBtn.addEventListener("click", () => {
   openModalForm(newPostModal);
@@ -139,9 +141,26 @@ newPostModalCloseBtn.addEventListener("click", () => {
   closeModalForm(modal[1]);
 });
 
-/* TASK 3/7 TO DO:
-- copy the editProfile's SubmitForm lines of code to the New Post Modal section. Tweak the copied lines to work for the New Post Modal's 'submit' button.
-- adjust the editProfile's submitform code to work with the array of querySelectorAll for both submit btns. Similar to how I did the CloseBtn for both Modals.
-- prepend the card URL and descriptions to the front of the cardsArray (whatever the name of the new array will be).
+function submitNewPost(event) {
+  event.preventDefault();
+  closeModalForm(modal[1]);
+}
 
+submitNewPostForm.addEventListener("submit", () => {
+  const newCard = {
+    link: imageLink.value,
+    name: caption.value,
+  };
+  submitNewPost(event);
+
+  newCardResult = getCardElement(newCard);
+  cardsList.prepend(newCardResult);
+  // Link to an image form unsplash.com that I used to ensure everything works properly:
+  // https://plus.unsplash.com/premium_photo-1734543942836-3f9a0c313da4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxfHx8ZW58MHx8fHx8
+});
+
+/* TASK 3/7 TO DO:
+- DONE copy the editProfile's SubmitForm lines of code to the New Post Modal section. Tweak the copied lines to work for the New Post Modal's 'submit' button.
+- DONE adjust the editProfile's submitform code to work with the array of querySelectorAll for both submit btns. Similar to how I did the CloseBtn for both Modals.
+- DONE prepend the card URL and descriptions to the front of the cardsArray (whatever the name of the new array will be).
 */

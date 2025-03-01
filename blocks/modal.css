@@ -70,7 +70,7 @@
 }
 
 .modal__close-btn:hover {
-  transition: 0.25s background;
+  transition: opacity 0.925s;
   opacity: 100%;
 }
 
@@ -126,7 +126,7 @@
 
 .modal__submit-btn:hover {
   background-color: #212121cc;
-  transition: 0.75s;
+  transition: background 0.75s;
 }
 
 @media screen and (max-width: 730px) {
