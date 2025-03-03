@@ -52,6 +52,20 @@ function getCardElement(initialCard) {
   cardElementImage.alt = initialCard.name;
 
   // return the ready HTML element with the filled-in data
+
+  //Function to change CSS on 'heart-shaped' Like Icon for each post.
+  const cardLikeBtn = cardElement.querySelector(".post__like-btn");
+  cardLikeBtn.addEventListener("click", () => {
+    if (cardLikeBtn.classList[1] == "post__like-btn_clicked") {
+      cardLikeBtn.classList.remove("post__like-btn_clicked");
+      // console.log(cardLikeBtn.classList);
+      // console.log(cardLikeBtn.classList[1]);
+    } else {
+      cardLikeBtn.classList.add("post__like-btn_clicked");
+      // console.log(cardLikeBtn.classList);
+    }
+  });
+
   return cardElement;
 }
 
@@ -163,4 +177,13 @@ submitNewPostForm.addEventListener("submit", () => {
 - DONE copy the editProfile's SubmitForm lines of code to the New Post Modal section. Tweak the copied lines to work for the New Post Modal's 'submit' button.
 - DONE adjust the editProfile's submitform code to work with the array of querySelectorAll for both submit btns. Similar to how I did the CloseBtn for both Modals.
 - DONE prepend the card URL and descriptions to the front of the cardsArray (whatever the name of the new array will be).
+*/
+
+/* TASK 4/7 TO DO:
+- DONE set listener for like btn. Pass it through getCardElement function to ensure each card gets the listener.
+- DONE console.log to ensure listener works on each like btn.
+- DONE make CSS for when Like btn is clicked. Ensure it's Figma's designated red color.
+- DONE make CSS:hover for when a 'liked' btn is hovered over.
+- DONE update listener func to change/add CSS classes to like btn when pressed.
+- add delete icon into getCardElement func so each card has the new icon.
 */

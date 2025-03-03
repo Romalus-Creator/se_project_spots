@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   list-style: none;
+  position: relative;
   /* align-items: center; */
   /* max-width: 413px; */
 }
@@ -14,6 +15,27 @@
     max-width: 288px; */
   border-radius: 8px;
   display: block;
+}
+
+.post__delete-btn {
+  background-image: url(../images/delete_trash_can_icon.svg);
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 100%;
+  width: 23px;
+  height: 20px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.post__delete-btn:hover {
+  background-image: url(../images/delete_trash_can_icon_hover.svg);
 }
 
 .post__description {
@@ -55,6 +77,16 @@
 .post__like-btn:hover {
   opacity: 100%;
   transition: 1s;
+}
+
+.post__like-btn_clicked {
+  background-image: url(../images/like_heart_red_icon.svg);
+  opacity: 100%;
+}
+
+.post__like-btn_clicked:hover {
+  background-image: url(../images/like_heart_red_hover_icon.svg);
+  opacity: 50%;
 }
 
 @media screen and (max-width: 627px) {
