@@ -51,8 +51,6 @@ function getCardElement(initialCard) {
   cardElementText.textContent = initialCard.name;
   cardElementImage.alt = initialCard.name;
 
-  // return the ready HTML element with the filled-in data
-
   //Function to change CSS on 'heart-shaped' Like Icon for each post.
   const cardLikeBtn = cardElement.querySelector(".post__like-btn");
   cardLikeBtn.addEventListener("click", () => {
@@ -66,6 +64,13 @@ function getCardElement(initialCard) {
     }
   });
 
+  //Make Trash Can icon delete the respective post.
+  const postDeleteBtn = cardElement.querySelector(".post__delete-btn"); // MAY NEED TO CHANGE WHERE THE QUERY SELECTOR STARTS
+  postDeleteBtn.addEventListener("click", () => {
+    cardElement.remove();
+  });
+
+  // return the ready HTML element with the filled-in data
   return cardElement;
 }
 
@@ -169,6 +174,7 @@ submitNewPostForm.addEventListener("submit", () => {
 
   newCardResult = getCardElement(newCard);
   cardsList.prepend(newCardResult);
+
   // Link to an image form unsplash.com that I used to ensure everything works properly:
   // https://plus.unsplash.com/premium_photo-1734543942836-3f9a0c313da4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxfHx8ZW58MHx8fHx8
 });
