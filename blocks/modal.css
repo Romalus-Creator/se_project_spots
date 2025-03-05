@@ -3,20 +3,19 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  /* height: 408px px; */
-
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  /* visibility: hidden; */
+  transition: opacity 0.35s ease-in-out;
 }
 
-.modal--closed {
+.modal_closed {
   visibility: hidden;
+  opacity: 0%;
+  transition: 0.35s ease-in-out;
 }
 
 .modal__box {
@@ -129,6 +128,67 @@
   transition: background 0.75s;
 }
 
+.modal__preview {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.modal__box_preview {
+  /* max-width: 80vw;
+  max-height: 80vh; */
+  padding: 0;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  position: relative;
+}
+
+.modal__image {
+  object-fit: cover;
+  /* display: flex; */
+  width: 100%;
+  max-width: 80vw;
+  max-height: 80vh;
+  /* justify-content: center; */
+  border-radius: 8px;
+}
+
+.modal__caption {
+  display: flex;
+  align-self: flex-start;
+  background-color: #212121;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 8px;
+  margin: 8px 0 0;
+}
+
+.modal__close-btn_preview {
+  background-image: url(../images/close-btn_x_white.svg);
+  background-color: transparent;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  /* align-self: flex-start; */
+  opacity: 100%;
+  position: absolute;
+  top: 0;
+  right: -52.57px;
+}
+
+.modal__close-btn_preview:hover {
+  transition: opacity 0.925s;
+  opacity: 40%;
+}
+
 @media screen and (max-width: 730px) {
   .modal__box {
     margin: auto 10px;
@@ -153,5 +213,19 @@
 
   .modal__submit-btn {
     align-self: normal;
+  }
+
+  .modal__preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .modal__box_preview {
+    padding: 0;
+  }
+  .modal__close-btn_preview {
+    top: -48px;
+    right: 0;
   }
 }

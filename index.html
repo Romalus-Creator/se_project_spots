@@ -78,7 +78,7 @@
         <p class="footer__copyright">2025 &copy; Spots</p>
       </footer>
       <!-- EDIT PROFILE FORM -->
-      <div class="modal modal--closed" id="edit-modal">
+      <div class="modal modal_closed" id="edit-modal">
         <div class="modal__box">
           <div class="modal__header">
             <h2 class="modal__title">Edit profile</h2>
@@ -106,7 +106,7 @@
         </div>
       </div>
       <!-- NEW POST FORM -->
-      <div class="modal modal--closed" id="post-modal">
+      <div class="modal modal_closed" id="post-modal">
         <div class="modal__box">
           <div class="modal__header">
             <h2 class="modal__title">New Post</h2>
@@ -129,6 +129,17 @@
             />
             <button type="submit" class="modal__submit-btn">Save</button>
           </form>
+        </div>
+      </div>
+      <!-- PREVIEW IMAGE MODAL -->
+      <div class="modal modal__preview modal_closed" id="preview-modal">
+        <div class="modal__box modal__box_preview">
+          <img src="" alt="" class="modal__image" />
+          <p class="modal__caption"></p>
+          <button
+            type="button"
+            class="modal__close-btn modal__close-btn_preview modal__close-btn_preview"
+          ></button>
         </div>
       </div>
     </div>

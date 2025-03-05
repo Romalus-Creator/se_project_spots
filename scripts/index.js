@@ -28,6 +28,11 @@ let initialCards = [
     name: "Mountain house",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
   },
+
+  {
+    name: "Golden Gate Bridge",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+  },
 ];
 
 // ============================= LOAD POSTS ONTO PAGE =============================
@@ -70,6 +75,19 @@ function getCardElement(initialCard) {
     cardElement.remove();
   });
 
+  //Click Event anywhere on the post__image will open the preview-modal to better view the picture.
+  const postImage = cardElement.querySelector(".post__image");
+  const previewModal = document.querySelector("#preview-modal");
+  const modalImage = previewModal.querySelector(".modal__image");
+  const modalCaption = previewModal.querySelector(".modal__caption");
+  postImage.addEventListener("click", () => {
+    previewModal.classList.remove("modal_closed");
+    modalImage.src = cardElementImage.src;
+    modalImage.alt = cardElementImage.alt;
+    modalCaption.textContent = cardElementText.textContent;
+    // console.log(previewModal.classList);
+  });
+
   // return the ready HTML element with the filled-in data
   return cardElement;
 }
@@ -92,7 +110,7 @@ initialCards.forEach((element) => {
 - DONE Inverting the func's will allow me to use openModalForm in any fill'x'Form func - like the New Post Form that needs a func to open and close still.
 - DONE After checking that this works with the openModalForm func, invert the funcs for the closeModalForm.
 - I was able to abstract the open Modal fairly easily, but the close Modal is kicking my butt. I since there are two different div's with .modal class,
-I imagine I need to run down the 'list' of the two div's, search if .modal--closed class is active (or removed?), then return the .modal[i] to pass the close-btn event function to the correct modal.
+I imagine I need to run down the 'list' of the two div's, search if .modal_closed class is active (or removed?), then return the .modal[i] to pass the close-btn event function to the correct modal.
 */
 
 // ============================= ALL MODALS =============================
@@ -100,11 +118,11 @@ const mainSection = document.querySelector(".main");
 const modal = [...document.querySelectorAll(".modal")];
 
 function openModalForm(modal) {
-  modal.classList.remove("modal--closed");
+  modal.classList.remove("modal_closed");
 }
 
 function closeModalForm(modal) {
-  modal.classList.add("modal--closed");
+  modal.classList.add("modal_closed");
   // console.log(modal);
 }
 
@@ -175,8 +193,21 @@ submitNewPostForm.addEventListener("submit", () => {
   newCardResult = getCardElement(newCard);
   cardsList.prepend(newCardResult);
 
+  //Remove values to ensure Placeholder text reappears each time the 'New Post' button is clicked.
+  imageLink.value = "";
+  caption.value = "";
+
   // Link to an image form unsplash.com that I used to ensure everything works properly:
   // https://plus.unsplash.com/premium_photo-1734543942836-3f9a0c313da4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxfHx8ZW58MHx8fHx8
+});
+
+// ============================= PREVIEW [IMAGE] MODAL =============================
+const previewModalCloseBtn = [
+  ...document.querySelectorAll(".modal__close-btn"),
+][2];
+previewModalCloseBtn.addEventListener("click", () => {
+  // console.log(modal);
+  modal[2].classList.add("modal_closed");
 });
 
 /* TASK 3/7 TO DO:
