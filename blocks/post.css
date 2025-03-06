@@ -8,11 +8,8 @@
 }
 
 .post__image {
-  /* width: 413px; */
-  max-height: 413px;
+  height: 413px;
   object-fit: cover;
-  /* min-width: 288px;
-    max-width: 288px; */
   border-radius: 8px;
   display: block;
 }
@@ -27,8 +24,8 @@
   background-position: center;
   background-repeat: no-repeat;
   opacity: 100%;
-  width: 23px;
-  height: 20px;
+  width: 32px;
+  height: 32px;
   border: none;
   padding: 0;
   cursor: pointer;
@@ -36,6 +33,7 @@
 
 .post__delete-btn:hover {
   background-image: url(../images/delete_trash_can_icon_hover.svg);
+  transition: 0.55s ease-out;
 }
 
 .post__description {

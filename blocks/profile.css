@@ -78,6 +78,7 @@
 .profile__pencil {
   width: 16px;
   height: 16px;
+  padding-right: 8px;
 }
 
 .profile__edit {
