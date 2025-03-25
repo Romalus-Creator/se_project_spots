@@ -129,6 +129,13 @@ modals.forEach((modal) => {
       closeModal(modal);
     }
   });
+
+  modal.addEventListener("click", (evt) => {
+    if (evt.target.classList.contains("modal")) {
+      // console.log(evt.target.classList);
+      closeModal(modal);
+    }
+  });
 });
 
 //Thank you code reviewer as this blew my mind! I knew I was using the Indexes wrong, but the piece of the 'puzzle' I was missing was the .closest of the modal class.
