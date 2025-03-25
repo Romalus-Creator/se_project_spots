@@ -123,11 +123,34 @@ function closeModal(modal) {
   // console.log(modal);
 }
 
+modals.forEach((modal) => {
+  document.addEventListener("keydown", (evt) => {
+    if (evt.key === "Escape") {
+      closeModal(modal);
+    }
+  });
+});
+
 //Thank you code reviewer as this blew my mind! I knew I was using the Indexes wrong, but the piece of the 'puzzle' I was missing was the .closest of the modal class.
 closeButtons.forEach((button) => {
   const popup = button.closest(".modal");
   button.addEventListener("click", () => closeModal(popup));
+  // document.addEventListener("keydown", (evt, modal) => {
+  //   if (evt.key === "Escape") {
+  //     closeModal(modal);
+  //   }
+  // });
 });
+
+// closeButtons.addEventListener("keydown", (evt) => {
+//   if (evt.key === "Escape") {
+//     modals.forEach((modal) => {
+//       if (!modal.classList.contains("modal_closed")) {
+//         closeModal(modal);
+//       }
+//     });
+//   }
+// });
 
 // ============================= EDIT PROFILE MODAL =============================
 const editModal = document.querySelector("#edit-modal");
@@ -143,7 +166,7 @@ editBtn.addEventListener("click", () => {
   newProfileName.value = profileName.textContent;
   newProfileDesc.value = profileDesc.textContent;
   openModal(editModal);
-  resetValidation(editModal, [newProfileName, newProfileDesc], config);
+  resetValidation(editModal, [newProfileName, newProfileDesc], settings);
 });
 
 function submitProfileForm(event) {

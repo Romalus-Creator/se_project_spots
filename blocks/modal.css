@@ -116,7 +116,7 @@ need to determine how to either 'tuck' errors into the bottom margin of the moda
 */
 .modal__error {
   display: flex;
-  color: red;
+  color: #ff000099;
   margin: 0;
   margin-top: 8px;
 }
