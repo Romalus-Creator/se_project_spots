@@ -82,8 +82,11 @@
 }
 
 .modal__label {
-  margin-right: auto;
-  margin-bottom: 8px;
+  /* margin-right: auto; */
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  /* margin-bottom: 8px; */
   color: #212121b2;
   font-weight: 500;
   font-size: 16px;
@@ -92,7 +95,8 @@
 
 .modal__input {
   padding: 16px 12px;
-  margin-bottom: 32px;
+  margin-top: 8px;
+  /* margin-bottom: 32px; */
   font-size: 20px;
   font-weight: 500;
   line-height: 20px;
@@ -101,6 +105,20 @@
   text-decoration-skip-ink: none;
   border: 1px solid #21212166;
   border-radius: 8px;
+}
+
+.modal__input_type_error {
+  border: 1px solid #ff000099;
+}
+
+/*
+need to determine how to either 'tuck' errors into the bottom margin of the modal__input elements, or make it swap back and forth between the two element's margin. Isn't there a way to have the margin's 'bleed' into each other?
+*/
+.modal__error {
+  display: flex;
+  color: red;
+  margin: 0;
+  margin-top: 8px;
 }
 
 .modal__submit-btn {
@@ -126,6 +144,10 @@
 .modal__submit-btn:hover {
   background-color: #212121cc;
   transition: background 0.75s;
+}
+
+.modal__submit-btn_disabled {
+  background-color: rgba(33, 33, 33, 0.5);
 }
 
 .modal_type_preview {
@@ -206,7 +228,7 @@
   .modal__input {
     font-size: 16px;
     line-height: 16px;
-    margin-bottom: 24px;
+    /* margin-bottom: 24px; */
   }
 
   .modal__submit-btn {

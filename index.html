@@ -78,55 +78,80 @@
         <p class="footer__copyright">2025 &copy; Spots</p>
       </footer>
       <!-- EDIT PROFILE FORM -->
-      <div class="modal modal_closed" id="edit-modal">
+      <div class="modal modal_closed" id="edit-modal" novalidate>
         <div class="modal__box">
           <div class="modal__header">
             <h2 class="modal__title">Edit profile</h2>
             <button type="button" class="modal__close-btn"></button>
           </div>
           <form class="modal__form" name="edit-profile">
-            <label for="profile-name-input" class="modal__label">Name </label>
-            <input
-              type="text"
-              id="profile-name-input"
-              class="modal__input"
-              placeholder="Name"
-            />
+            <label for="profile-name-input" class="modal__label"
+              >Name
+              <input
+                type="text"
+                id="profile-name-input"
+                class="modal__input"
+                placeholder="Name"
+                required
+                minlength="2"
+                maxlength="40"
+              />
+              <span id="profile-name-input-error" class="modal__error"></span>
+            </label>
             <label for="profile-description-input" class="modal__label"
               >Description
+              <input
+                type="text"
+                id="profile-description-input"
+                class="modal__input"
+                placeholder="Description"
+                required
+                minlength="2"
+                maxlength="200"
+              />
+              <span
+                id="profile-description-input-error"
+                class="modal__error"
+              ></span>
             </label>
-            <input
-              type="text"
-              id="profile-description-input"
-              class="modal__input"
-              placeholder="Description"
-            />
             <button type="submit" class="modal__submit-btn">Save</button>
           </form>
         </div>
       </div>
       <!-- NEW POST FORM -->
-      <div class="modal modal_closed" id="post-modal">
+      <div class="modal modal_closed" id="post-modal" novalidate>
         <div class="modal__box">
           <div class="modal__header">
             <h2 class="modal__title">New Post</h2>
             <button type="button" class="modal__close-btn"></button>
           </div>
           <form class="modal__form" name="new-post">
-            <label for="image-link" class="modal__label">Image link</label>
-            <input
-              type="url"
-              id="image-link"
-              class="modal__input"
-              placeholder="Paste a link to the picture"
-            />
-            <label for="caption" class="modal__label">Caption </label>
-            <input
-              type="text"
-              id="caption"
-              class="modal__input"
-              placeholder="Type your caption"
-            />
+            <label for="image-link" class="modal__label"
+              >Image link
+              <input
+                type="url"
+                id="image-link"
+                class="modal__input"
+                placeholder="Paste a link to the picture"
+                required
+                type="url"
+              />
+              <span id="image-link-error" class="modal__error"></span>
+            </label>
+            <label for="caption" class="modal__label"
+              >Caption
+
+              <input
+                type="text"
+                id="caption"
+                class="modal__input"
+                placeholder="Type your caption"
+                required
+                minlength="2"
+                maxlength="30"
+              />
+              <span id="caption-error" class="modal__error"></span>
+            </label>
             <button type="submit" class="modal__submit-btn">Save</button>
           </form>
         </div>
@@ -143,6 +168,7 @@
         </div>
       </div>
     </div>
+    <script src="./scripts/validation.js" defer></script>
     <script src="./scripts/index.js" defer></script>
   </body>
 </html>

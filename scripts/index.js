@@ -44,6 +44,7 @@ const modalCaption = previewModal.querySelector(".modal__caption");
 // ============================= LOAD POSTS ONTO PAGE =============================
 const cardTemplate = document.querySelector("#post-template");
 const cardsList = document.querySelector(".posts__list");
+const modalSubmitBtns = document.querySelectorAll(".modal__submit-btn");
 
 function getCardElement(initialCard) {
   const cardElement = cardTemplate.content
@@ -142,6 +143,7 @@ editBtn.addEventListener("click", () => {
   newProfileName.value = profileName.textContent;
   newProfileDesc.value = profileDesc.textContent;
   openModal(editModal);
+  resetValidation(editModal, [newProfileName, newProfileDesc], config);
 });
 
 function submitProfileForm(event) {
@@ -149,6 +151,10 @@ function submitProfileForm(event) {
   profileDesc.textContent = newProfileDesc.value;
   event.preventDefault();
   closeModal(editModal);
+  // disableButton(modalSubmitBtns);
+  modalSubmitBtns.forEach((submitBtn) => {
+    disableButton(submitBtn, settings);
+  });
 }
 
 profileForm.addEventListener("submit", (profileData) => {
@@ -169,6 +175,11 @@ newPostBtn.addEventListener("click", () => {
 
 function submitNewPost(event) {
   event.preventDefault();
+
+  modalSubmitBtns.forEach((submitBtn) => {
+    disableButton(submitBtn);
+  });
+  // disableButton(modalSubmitBtns);
   closeModal(newPostModal);
   const newCard = {
     link: imageLink.value,
