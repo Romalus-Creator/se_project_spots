@@ -78,13 +78,13 @@
         <p class="footer__copyright">2025 &copy; Spots</p>
       </footer>
       <!-- EDIT PROFILE FORM -->
-      <div class="modal modal_closed" id="edit-modal" novalidate>
+      <div class="modal modal_closed" id="edit-modal">
         <div class="modal__box">
           <div class="modal__header">
             <h2 class="modal__title">Edit profile</h2>
             <button type="button" class="modal__close-btn"></button>
           </div>
-          <form class="modal__form" name="edit-profile">
+          <form class="modal__form" name="edit-profile" novalidate>
             <label for="profile-name-input" class="modal__label"
               >Name
               <input
@@ -119,13 +119,13 @@
         </div>
       </div>
       <!-- NEW POST FORM -->
-      <div class="modal modal_closed" id="post-modal" novalidate>
+      <div class="modal modal_closed" id="post-modal">
         <div class="modal__box">
           <div class="modal__header">
             <h2 class="modal__title">New Post</h2>
             <button type="button" class="modal__close-btn"></button>
           </div>
-          <form class="modal__form" name="new-post">
+          <form class="modal__form" name="new-post" novalidate>
             <label for="image-link" class="modal__label"
               >Image link
               <input
@@ -134,7 +134,6 @@
                 class="modal__input"
                 placeholder="Paste a link to the picture"
                 required
-                type="url"
               />
               <span id="image-link-error" class="modal__error"></span>
             </label>

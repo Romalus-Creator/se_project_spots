@@ -116,23 +116,27 @@ const closeButtons = document.querySelectorAll(".modal__close-btn");
 
 function openModal(modal) {
   modal.classList.remove("modal_closed");
+  document.addEventListener("keydown", handleEscape);
+  // console.log(modal.addEventListener("keydown", handleEscape));
 }
 
 function closeModal(modal) {
   modal.classList.add("modal_closed");
   // console.log(modal);
+  document.removeEventListener("keydown", handleEscape);
 }
 
-modals.forEach((modal) => {
-  document.addEventListener("keydown", (evt) => {
+function handleEscape(evt) {
+  modals.forEach((modal) => {
     if (evt.key === "Escape") {
       closeModal(modal);
     }
   });
+}
 
+modals.forEach((modal) => {
   modal.addEventListener("click", (evt) => {
     if (evt.target.classList.contains("modal")) {
-      // console.log(evt.target.classList);
       closeModal(modal);
     }
   });
@@ -142,22 +146,7 @@ modals.forEach((modal) => {
 closeButtons.forEach((button) => {
   const popup = button.closest(".modal");
   button.addEventListener("click", () => closeModal(popup));
-  // document.addEventListener("keydown", (evt, modal) => {
-  //   if (evt.key === "Escape") {
-  //     closeModal(modal);
-  //   }
-  // });
 });
-
-// closeButtons.addEventListener("keydown", (evt) => {
-//   if (evt.key === "Escape") {
-//     modals.forEach((modal) => {
-//       if (!modal.classList.contains("modal_closed")) {
-//         closeModal(modal);
-//       }
-//     });
-//   }
-// });
 
 // ============================= EDIT PROFILE MODAL =============================
 const editModal = document.querySelector("#edit-modal");
@@ -182,9 +171,7 @@ function submitProfileForm(event) {
   event.preventDefault();
   closeModal(editModal);
   // disableButton(modalSubmitBtns);
-  modalSubmitBtns.forEach((submitBtn) => {
-    disableButton(submitBtn, settings);
-  });
+  disableButton(event.submitter, settings);
 }
 
 profileForm.addEventListener("submit", (profileData) => {
@@ -206,9 +193,7 @@ newPostBtn.addEventListener("click", () => {
 function submitNewPost(event) {
   event.preventDefault();
 
-  modalSubmitBtns.forEach((submitBtn) => {
-    disableButton(submitBtn);
-  });
+  disableButton(event.submitter, settings);
   // disableButton(modalSubmitBtns);
   closeModal(newPostModal);
   const newCard = {
