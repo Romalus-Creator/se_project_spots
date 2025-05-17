@@ -5,6 +5,7 @@ import {
   enableValidation,
   resetValidation,
 } from "../scripts/validation.js";
+import { Api } from "../utils/Api.js";
 
 import logoSrc from "../images/logo.svg";
 import avatarSrc from "../images/avatar.jpg";
@@ -58,6 +59,24 @@ const initialCards = [
   },
 ];
 
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "c13a04f8-b66a-4148-8739-32c6b6be7e5a",
+    "Content-Type": "application/json",
+  },
+});
+
+api
+  .getInitialCards()
+  .then((cards) => {
+    cards.forEach((element) => {
+      const cardResult = getCardElement(element);
+      cardsList.append(cardResult);
+    });
+  })
+  .catch(console.error);
+
 // ============================= PREVIEW [IMAGE] MODAL =============================
 const previewModal = document.querySelector("#preview-modal");
 const previewModalCloseBtn = previewModal.querySelector(".modal__close-btn");
@@ -110,12 +129,6 @@ function getCardElement(initialCard) {
   // return the ready HTML element with the filled-in data
   return cardElement;
 }
-
-initialCards.forEach((element) => {
-  const cardResult = getCardElement(element);
-  // Use the appropriate built-in DOM method to add this HTML element to the page.
-  cardsList.append(cardResult);
-});
 
 // OLD FOR LOOP THAT WAS REMOVED FOR THE FOREACH ARRAY FUNCTION.
 //  for (let i = 0; i < initialCards.length; i++) {
