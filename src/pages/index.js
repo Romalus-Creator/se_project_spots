@@ -1,3 +1,25 @@
+import "./index.css";
+import {
+  settings,
+  enableValidation,
+  resetValidation,
+} from "../scripts/validation.js";
+
+import logoSrc from "../images/logo.svg";
+import avatarSrc from "../images/avatar.jpg";
+import pencilIconSrc from "../images/pencil_icon.svg";
+import plusIconSrc from "../images/plus_icon.svg";
+
+const logoImage = document.getElementById("image-logo");
+const avatarImage = document.getElementById("image-avatar");
+const pencilIconImage = document.getElementById("image-pencil_icon");
+const plusIconImage = document.getElementById("image-plus_icon");
+
+logoImage.src = logoSrc;
+avatarImage.src = avatarSrc;
+pencilIconImage.src = pencilIconSrc;
+plusIconImage.src = plusIconSrc;
+
 const initialCards = [
   {
     name: "Val Thorens",
@@ -164,6 +186,8 @@ editBtn.addEventListener("click", () => {
   openModal(editModal);
   resetValidation(editModal, [newProfileName, newProfileDesc], settings);
 });
+
+enableValidation(settings);
 
 function submitProfileForm(event) {
   profileName.textContent = newProfileName.value;
