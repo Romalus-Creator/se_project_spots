@@ -4,6 +4,7 @@ import {
   settings,
   enableValidation,
   resetValidation,
+  disableButton,
 } from "../scripts/validation.js";
 import { Api } from "../utils/Api.js";
 
@@ -62,18 +63,33 @@ const initialCards = [
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: "c13a04f8-b66a-4148-8739-32c6b6be7e5a",
+    authorization: "c9851f90-cf8f-4cb2-ba1b-6a2d14bb1b1d",
     "Content-Type": "application/json",
   },
 });
 
+// api
+//   .getInitialCards()
+//   .then((cards) => {
+//     cards.forEach((element) => {
+//       const cardResult = getCardElement(element);
+//       cardsList.append(cardResult);
+//     });
+//   })
+//   .catch(console.error);
+
 api
-  .getInitialCards()
-  .then((cards) => {
+  .getAppInfo()
+  .then(([cards, headers]) => {
     cards.forEach((element) => {
       const cardResult = getCardElement(element);
       cardsList.append(cardResult);
     });
+
+    // Handle the user's info
+    profileName.textContent = headers.name;
+    profileDesc.textContent = headers.about;
+    profileImage.src = headers.avatar;
   })
   .catch(console.error);
 
@@ -130,21 +146,6 @@ function getCardElement(initialCard) {
   return cardElement;
 }
 
-// OLD FOR LOOP THAT WAS REMOVED FOR THE FOREACH ARRAY FUNCTION.
-//  for (let i = 0; i < initialCards.length; i++) {
-//   cardResult = getCardElement(initialCards[i]);
-//   // Use the appropriate built-in DOM method to add this HTML element to the page.
-//   cardsList.append(cardResult);
-// }
-
-/* TO DO TASK 2 OF 7:
-- DONE I need to 'invert' my functions. I currently have the fillProfileForm func tucked inside the openModal func, but it should be the opposite.
-- DONE Inverting the func's will allow me to use openModal in any fill'x'Form func - like the New Post Form that needs a func to open and close still.
-- DONE After checking that this works with the openModal func, invert the funcs for the closeModal.
-- I was able to abstract the open Modal fairly easily, but the close Modal is kicking my butt. I since there are two different div's with .modal class,
-I imagine I need to run down the 'list' of the two div's, search if .modal_closed class is active (or removed?), then return the .modal[i] to pass the close-btn event function to the correct modal.
-*/
-
 // ============================= ALL MODALS =============================
 const mainSection = document.querySelector(".main");
 const modals = [...document.querySelectorAll(".modal")];
@@ -178,7 +179,6 @@ modals.forEach((modal) => {
   });
 });
 
-//Thank you code reviewer as this blew my mind! I knew I was using the Indexes wrong, but the piece of the 'puzzle' I was missing was the .closest of the modal class.
 closeButtons.forEach((button) => {
   const popup = button.closest(".modal");
   button.addEventListener("click", () => closeModal(popup));
@@ -193,6 +193,7 @@ const profileDesc = mainSection.querySelector(".profile__description");
 const newProfileName = editModal.querySelector("#profile-name-input");
 const newProfileDesc = editModal.querySelector("#profile-description-input");
 const profileForm = editModal.querySelector(".modal__form");
+const profileImage = document.querySelector(".profile__image");
 
 editBtn.addEventListener("click", () => {
   newProfileName.value = profileName.textContent;
@@ -204,8 +205,14 @@ editBtn.addEventListener("click", () => {
 enableValidation(settings);
 
 function submitProfileForm(event) {
-  profileName.textContent = newProfileName.value;
-  profileDesc.textContent = newProfileDesc.value;
+  api
+    .editUserInfo({ name: newProfileName.value, about: newProfileDesc.value })
+    .then((data) => {
+      // dta arg instead of input values.
+      profileName.textContent = data.name;
+      profileDesc.textContent = data.about;
+    })
+    .catch(console.error);
   event.preventDefault();
   closeModal(editModal);
   // disableButton(modalSubmitBtns);
@@ -229,24 +236,21 @@ newPostBtn.addEventListener("click", () => {
 });
 
 function submitNewPost(event) {
-  event.preventDefault();
-
+  api
+    .postNewCard({ name: caption.value, link: imageLink.value })
+    .then((data) => {
+      const newCardResult = getCardElement(data);
+      cardsList.prepend(newCardResult);
+    })
+    .catch(console.error);
   disableButton(event.submitter, settings);
-  // disableButton(modalSubmitBtns);
-  closeModal(newPostModal);
-  const newCard = {
-    link: imageLink.value,
-    name: caption.value,
-  };
-
-  const newCardResult = getCardElement(newCard);
-  cardsList.prepend(newCardResult);
-  //Remove values to ensure Placeholder text reappears each time the 'New Post' button is clicked.
   event.target.reset();
+  event.preventDefault();
+  closeModal(newPostModal);
 }
 
-submitNewPostForm.addEventListener("submit", (newPostData) => {
-  submitNewPost(newPostData);
+submitNewPostForm.addEventListener("submit", (event) => {
+  submitNewPost(event);
   // Link to an image form unsplash.com that I used to ensure everything works properly:
   // https://plus.unsplash.com/premium_photo-1734543942836-3f9a0c313da4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxfHx8ZW58MHx8fHx8
 });
