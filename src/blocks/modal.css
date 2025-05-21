@@ -209,6 +209,88 @@ need to determine how to either 'tuck' errors into the bottom margin of the moda
   opacity: 40%;
 }
 
+.modal_type_delete {
+}
+
+.modal__verify_delete {
+  justify-content: space-between;
+  margin-top: 0;
+  margin-bottom: 32px;
+}
+.modal__box_delete {
+  max-width: 630px;
+  max-height: 172px;
+  padding: 32px 20px;
+  position: relative;
+}
+
+.modal__close-btn_delete {
+  background-image: url(../images/close-btn_x_white.svg);
+  background-color: transparent;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  /* align-self: flex-start; */
+  opacity: 100%;
+  position: absolute;
+  top: 0;
+  right: -52.57px;
+}
+
+.modal__delete-btns {
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: space-between;
+}
+.modal__submit-btn_delete {
+  display: flex;
+  background-color: #ff6565;
+  color: #212121;
+  margin-right: 10px;
+  margin-left: auto;
+  /* border-radius: 8px; */
+  /* justify-content: center; */
+  /* padding: 16px 58px; */
+  /* border: none; */
+  /* cursor: pointer; */
+  /* font-size: 16px; */
+  /* font-weight: 500; */
+  /* line-height: 16px; */
+  /* text-align: left; */
+  /* text-underline-position: from-font; */
+  /* text-decoration-skip-ink: none; */
+}
+
+.modal__cancel {
+}
+
+/*may not need this class*/
+.modal__close-btn_cancel {
+  display: flex;
+  background-color: transparent;
+  border-radius: 8px;
+  justify-content: center;
+  padding: 16px 58px;
+  border: 1px solid #212121;
+  cursor: pointer;
+  color: #212121;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  margin-right: auto;
+  margin-left: 10px;
+}
+
 @media screen and (max-width: 730px) {
   .modal__box {
     margin: auto 10px;

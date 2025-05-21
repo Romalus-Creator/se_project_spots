@@ -68,16 +68,6 @@ const api = new Api({
   },
 });
 
-// api
-//   .getInitialCards()
-//   .then((cards) => {
-//     cards.forEach((element) => {
-//       const cardResult = getCardElement(element);
-//       cardsList.append(cardResult);
-//     });
-//   })
-//   .catch(console.error);
-
 api
   .getAppInfo()
   .then(([cards, headers]) => {
@@ -93,6 +83,34 @@ api
   })
   .catch(console.error);
 
+// ============================= DELETE A POST MODAL =============================
+let selectedCard;
+let selectedCardId;
+const deleteModal = document.querySelector("#delete-modal");
+const deleteForm = deleteModal.querySelector(".modal__form");
+
+function handleDeleteCard(cardElement, data) {
+  selectedCard = cardElement;
+  selectedCardId = data._id;
+  openModal(deleteModal);
+}
+
+function handleDeleteSubmit(event) {
+  api
+    .deleteCard(selectedCardId) // pass the ID the the api function
+    .then(() => {})
+    .catch(console.error);
+  // disableButton(event.submitter, settings);
+  event.target.reset();
+  event.preventDefault();
+  // remove the card from the DOM
+  selectedCard.remove();
+  // close the modal
+  closeModal(deleteModal);
+}
+
+deleteForm.addEventListener("submit", handleDeleteSubmit);
+
 // ============================= PREVIEW [IMAGE] MODAL =============================
 const previewModal = document.querySelector("#preview-modal");
 const previewModalCloseBtn = previewModal.querySelector(".modal__close-btn");
@@ -104,7 +122,7 @@ const cardTemplate = document.querySelector("#post-template");
 const cardsList = document.querySelector(".posts__list");
 const modalSubmitBtns = document.querySelectorAll(".modal__submit-btn");
 
-function getCardElement(initialCard) {
+function getCardElement(data) {
   const cardElement = cardTemplate.content
     .querySelector(".post")
     .cloneNode(true);
@@ -117,20 +135,37 @@ function getCardElement(initialCard) {
   // set the image’s src attribute to the image to the link field of the object
   // set the image’s alt text to the name field of the object
   // set the card’s title to the name field of the object, too
-  cardElementImage.src = initialCard.link;
-  cardElementText.textContent = initialCard.name;
-  cardElementImage.alt = initialCard.name;
+  cardElementImage.src = data.link;
+  cardElementText.textContent = data.name;
+  cardElementImage.alt = data.name;
 
-  //Function to change CSS on 'heart-shaped' Like Icon for each post.
+  // Like Buttons on Each Post
   const cardLikeBtn = cardElement.querySelector(".post__like-btn");
-  cardLikeBtn.addEventListener("click", () => {
+  if (data.isLiked) {
     cardLikeBtn.classList.toggle("post__like-btn_clicked");
-  });
+  }
+  //Function to change CSS on 'heart-shaped' Like Icon for each post.
+  function handleLikeIcon() {
+    const isLikedClass = cardLikeBtn.classList.contains(
+      "post__like-btn_clicked"
+    )
+      ? true
+      : false;
+    console.log("isLikedClass: " + isLikedClass);
+    api
+      .changeLikeStatus(data._id, isLikedClass)
+      .then(() => {
+        cardLikeBtn.classList.toggle("post__like-btn_clicked");
+      })
+      .catch(console.error);
+  }
+
+  cardLikeBtn.addEventListener("click", handleLikeIcon);
 
   //Make Trash Can icon delete the respective post.
   const postDeleteBtn = cardElement.querySelector(".post__delete-btn"); // MAY NEED TO CHANGE WHERE THE QUERY SELECTOR STARTS
-  postDeleteBtn.addEventListener("click", () => {
-    cardElement.remove();
+  postDeleteBtn.addEventListener("click", (evt) => {
+    handleDeleteCard(cardElement, data);
   });
 
   //Click Event anywhere on the post__image will open the preview-modal to better view the picture.
@@ -213,10 +248,10 @@ function submitProfileForm(event) {
       profileDesc.textContent = data.about;
     })
     .catch(console.error);
+  disableButton(event.submitter, settings);
   event.preventDefault();
   closeModal(editModal);
   // disableButton(modalSubmitBtns);
-  disableButton(event.submitter, settings);
 }
 
 profileForm.addEventListener("submit", (profileData) => {
@@ -254,18 +289,3 @@ submitNewPostForm.addEventListener("submit", (event) => {
   // Link to an image form unsplash.com that I used to ensure everything works properly:
   // https://plus.unsplash.com/premium_photo-1734543942836-3f9a0c313da4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxfHx8ZW58MHx8fHx8
 });
-
-/* TASK 3/7 TO DO:
-- DONE copy the editProfile's SubmitForm lines of code to the New Post Modal section. Tweak the copied lines to work for the New Post Modal's 'submit' button.
-- DONE adjust the editProfile's submitform code to work with the array of querySelectorAll for both submit btns. Similar to how I did the CloseBtn for both Modals.
-- DONE prepend the card URL and descriptions to the front of the cardsArray (whatever the name of the new array will be).
-*/
-
-/* TASK 4/7 TO DO:
-- DONE set listener for like btn. Pass it through getCardElement function to ensure each card gets the listener.
-- DONE console.log to ensure listener works on each like btn.
-- DONE make CSS for when Like btn is clicked. Ensure it's Figma's designated red color.
-- DONE make CSS:hover for when a 'liked' btn is hovered over.
-- DONE update listener func to change/add CSS classes to like btn when pressed.
-- add delete icon into getCardElement func so each card has the new icon.
-*/
