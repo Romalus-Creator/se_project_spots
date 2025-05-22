@@ -13,6 +13,7 @@ import avatarSrc from "../images/avatar.jpg";
 import pencilIconSrc from "../images/pencil_icon.svg";
 import plusIconSrc from "../images/plus_icon.svg";
 import { setButtonText } from "../utils/Helpers.js";
+import { initialCards } from "../utils/Constants.js";
 
 const logoImage = document.getElementById("image-logo");
 const avatarImage = document.getElementById("image-avatar");
@@ -23,43 +24,6 @@ logoImage.src = logoSrc;
 avatarImage.src = avatarSrc;
 pencilIconImage.src = pencilIconSrc;
 plusIconImage.src = plusIconSrc;
-
-const initialCards = [
-  {
-    name: "Val Thorens",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-
-  {
-    name: "Restaurant terrace",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
-  },
-
-  {
-    name: "An outdoor cafe",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
-  },
-
-  {
-    name: "A very long bridge, over the forest and through the trees",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
-  },
-
-  {
-    name: "Tunnel with morning light",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
-  },
-
-  {
-    name: "Mountain house",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-
-  {
-    name: "Golden Gate Bridge",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
-  },
-];
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -158,7 +122,6 @@ function getCardElement(data) {
     )
       ? true
       : false;
-    console.log("isLikedClass: " + isLikedClass);
     api
       .changeLikeStatus(data._id, isLikedClass)
       .then(() => {
