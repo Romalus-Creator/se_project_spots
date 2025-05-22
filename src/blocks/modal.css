@@ -210,18 +210,21 @@ need to determine how to either 'tuck' errors into the bottom margin of the moda
 }
 
 .modal_type_delete {
+  display: flex;
+  justify-content: center;
+}
+
+.modal__box_delete {
+  max-width: 630px;
+  max-height: 172px;
+  padding: 32px 20px;
+  position: relative;
 }
 
 .modal__verify_delete {
   justify-content: space-between;
   margin-top: 0;
   margin-bottom: 32px;
-}
-.modal__box_delete {
-  max-width: 630px;
-  max-height: 172px;
-  padding: 32px 20px;
-  position: relative;
 }
 
 .modal__close-btn_delete {
@@ -255,6 +258,7 @@ need to determine how to either 'tuck' errors into the bottom margin of the moda
   color: #212121;
   margin-right: 10px;
   margin-left: auto;
+  max-width: 156px;
   /* border-radius: 8px; */
   /* justify-content: center; */
   /* padding: 16px 58px; */
@@ -269,12 +273,13 @@ need to determine how to either 'tuck' errors into the bottom margin of the moda
 }
 
 .modal__cancel {
+  max-width: 156px;
 }
 
 /*may not need this class*/
 .modal__close-btn_cancel {
   display: flex;
-  background-color: transparent;
+  background-color: #fff;
   border-radius: 8px;
   justify-content: center;
   padding: 16px 58px;
@@ -337,5 +342,31 @@ need to determine how to either 'tuck' errors into the bottom margin of the moda
   .modal__close-btn_preview {
     top: -48px;
     right: 0;
+  }
+
+  .modal__box_delete {
+    display: flex;
+    flex-direction: column;
+    height: 208px;
+    width: 300px;
+    /* justify-content: center; */
+  }
+
+  .modal__verify_delete {
+    margin: 12px 12px 20px 12px;
+  }
+  .modal__delete-btns {
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    margin-bottom: 12px;
+  }
+
+  .modal__submit-btn_delete {
+    margin: 0;
+    margin-bottom: 12px;
+  }
+  .modal__cancel {
+    margin: 0;
   }
 }

@@ -18,11 +18,20 @@
       <main class="main">
         <section class="profile page__section">
           <div class="profile__bio">
-            <img
-              class="profile__image"
-              id="image-avatar"
-              alt="A black and white portrait photo of Bessie Coleman."
-            />
+            <div class="profile__avatar-container">
+              <button class="profile__avatar-btn">
+                <img
+                  class="profile__pencil-icon"
+                  id="image-pencil-white"
+                  src="<%=require('./images/pencil_icon_white.svg')%>"
+                />
+              </button>
+              <img
+                class="profile__image"
+                id="image-avatar"
+                alt="A black and white portrait photo of Bessie Coleman."
+              />
+            </div>
             <div class="profile__texts">
               <div class="profile__text">
                 <h1 class="profile__name">Bessie Coleman</h1>
@@ -188,6 +197,29 @@
                 Cancel
               </button>
             </div>
+          </form>
+        </div>
+      </div>
+      <!-- EDIT AVATAR IMAGE MODAL -->
+      <div class="modal modal_closed" id="avatar-modal">
+        <div class="modal__box">
+          <div class="modal__header">
+            <h2 class="modal__title">Edit profile avatar</h2>
+            <button type="button" class="modal__close-btn"></button>
+          </div>
+          <form class="modal__form" name="edit-avatar" novalidate>
+            <label for="edit-avatar-input" class="modal__label"
+              >Profile Picture
+              <input
+                type="url"
+                id="edit-avatar-input"
+                class="modal__input"
+                placeholder="Paste the link to an image"
+                required
+              />
+              <span id="edit-avatar-input-error" class="modal__error"></span>
+            </label>
+            <button type="submit" class="modal__submit-btn">Save</button>
           </form>
         </div>
       </div>

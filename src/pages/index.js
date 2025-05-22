@@ -12,6 +12,7 @@ import logoSrc from "../images/logo.svg";
 import avatarSrc from "../images/avatar.jpg";
 import pencilIconSrc from "../images/pencil_icon.svg";
 import plusIconSrc from "../images/plus_icon.svg";
+import { setButtonText } from "../utils/Helpers.js";
 
 const logoImage = document.getElementById("image-logo");
 const avatarImage = document.getElementById("image-avatar");
@@ -99,7 +100,13 @@ function handleDeleteSubmit(event) {
   api
     .deleteCard(selectedCardId) // pass the ID the the api function
     .then(() => {})
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setButtonText(event, true);
+      setTimeout(() => {
+        event.submitter.textContent = "Delete";
+      }, 1000);
+    });
   // disableButton(event.submitter, settings);
   event.target.reset();
   event.preventDefault();
@@ -229,6 +236,37 @@ const newProfileName = editModal.querySelector("#profile-name-input");
 const newProfileDesc = editModal.querySelector("#profile-description-input");
 const profileForm = editModal.querySelector(".modal__form");
 const profileImage = document.querySelector(".profile__image");
+const editProfileImage = document.querySelector(".profile__avatar-btn");
+const avatarModal = document.querySelector("#avatar-modal");
+const avatarForm = avatarModal.querySelector(".modal__form");
+const avatarInput = avatarModal.querySelector("#edit-avatar-input");
+
+editProfileImage.addEventListener("click", () => {
+  openModal(avatarModal);
+});
+
+function submitAvatarEdit(event) {
+  api
+    .editAvatar(avatarInput.value)
+    .then((data) => {
+      avatarImage.src = data.avatar;
+    })
+    .catch(console.error)
+    .finally(() => {
+      setButtonText(event, true);
+      setTimeout(() => {
+        event.submitter.textContent = "Save";
+      }, 1000);
+    });
+  disableButton(event.submitter, settings);
+  event.target.reset();
+  event.preventDefault();
+  closeModal(avatarModal);
+}
+
+avatarForm.addEventListener("submit", (event) => {
+  submitAvatarEdit(event);
+});
 
 editBtn.addEventListener("click", () => {
   newProfileName.value = profileName.textContent;
@@ -247,7 +285,13 @@ function submitProfileForm(event) {
       profileName.textContent = data.name;
       profileDesc.textContent = data.about;
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setButtonText(event, true);
+      setTimeout(() => {
+        event.submitter.textContent = "Save";
+      }, 1000);
+    });
   disableButton(event.submitter, settings);
   event.preventDefault();
   closeModal(editModal);
@@ -277,7 +321,13 @@ function submitNewPost(event) {
       const newCardResult = getCardElement(data);
       cardsList.prepend(newCardResult);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setButtonText(event, true);
+      setTimeout(() => {
+        event.submitter.textContent = "Save";
+      }, 1000);
+    });
   disableButton(event.submitter, settings);
   event.target.reset();
   event.preventDefault();
