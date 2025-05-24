@@ -13,7 +13,6 @@ import avatarSrc from "../images/avatar.jpg";
 import pencilIconSrc from "../images/pencil_icon.svg";
 import plusIconSrc from "../images/plus_icon.svg";
 import { setButtonText } from "../utils/Helpers.js";
-import { initialCards } from "../utils/Constants.js";
 
 const logoImage = document.getElementById("image-logo");
 const avatarImage = document.getElementById("image-avatar");
@@ -53,6 +52,7 @@ let selectedCard;
 let selectedCardId;
 const deleteModal = document.querySelector("#delete-modal");
 const deleteForm = deleteModal.querySelector(".modal__form");
+const cancelBtn = document.querySelector(".modal__close-btn_cancel");
 
 function handleDeleteCard(cardElement, data) {
   selectedCard = cardElement;
@@ -61,26 +61,27 @@ function handleDeleteCard(cardElement, data) {
 }
 
 function handleDeleteSubmit(event) {
+  event.preventDefault();
+
   api
-    .deleteCard(selectedCardId) // pass the ID the the api function
-    .then(() => {})
+    .deleteCard(selectedCardId)
+    .then(() => {
+      // Only remove the card and close the modal if the API call succeeds
+      selectedCard.remove();
+      closeModal(deleteModal);
+      event.target.reset();
+    })
     .catch(console.error)
     .finally(() => {
-      setButtonText(event, true);
       setTimeout(() => {
-        event.submitter.textContent = "Delete";
+        submitBtn.textContent = "Delete";
       }, 1000);
     });
-  // disableButton(event.submitter, settings);
-  event.target.reset();
-  event.preventDefault();
-  // remove the card from the DOM
-  selectedCard.remove();
-  // close the modal
-  closeModal(deleteModal);
 }
+// disableButton(event.submitter, settings);
 
 deleteForm.addEventListener("submit", handleDeleteSubmit);
+cancelBtn.addEventListener("click", () => closeModal(deleteModal));
 
 // ============================= PREVIEW [IMAGE] MODAL =============================
 const previewModal = document.querySelector("#preview-modal");
@@ -209,10 +210,14 @@ editProfileImage.addEventListener("click", () => {
 });
 
 function submitAvatarEdit(event) {
+  event.preventDefault();
   api
     .editAvatar(avatarInput.value)
     .then((data) => {
       avatarImage.src = data.avatar;
+      disableButton(event.submitter, settings);
+      event.target.reset();
+      closeModal(avatarModal);
     })
     .catch(console.error)
     .finally(() => {
@@ -221,10 +226,6 @@ function submitAvatarEdit(event) {
         event.submitter.textContent = "Save";
       }, 1000);
     });
-  disableButton(event.submitter, settings);
-  event.target.reset();
-  event.preventDefault();
-  closeModal(avatarModal);
 }
 
 avatarForm.addEventListener("submit", (event) => {
@@ -241,12 +242,16 @@ editBtn.addEventListener("click", () => {
 enableValidation(settings);
 
 function submitProfileForm(event) {
+  event.preventDefault();
   api
     .editUserInfo({ name: newProfileName.value, about: newProfileDesc.value })
     .then((data) => {
       // dta arg instead of input values.
       profileName.textContent = data.name;
       profileDesc.textContent = data.about;
+      disableButton(event.submitter, settings);
+      closeModal(editModal);
+      // disableButton(modalSubmitBtns);
     })
     .catch(console.error)
     .finally(() => {
@@ -255,10 +260,6 @@ function submitProfileForm(event) {
         event.submitter.textContent = "Save";
       }, 1000);
     });
-  disableButton(event.submitter, settings);
-  event.preventDefault();
-  closeModal(editModal);
-  // disableButton(modalSubmitBtns);
 }
 
 profileForm.addEventListener("submit", (profileData) => {
@@ -278,11 +279,15 @@ newPostBtn.addEventListener("click", () => {
 });
 
 function submitNewPost(event) {
+  event.preventDefault();
   api
     .postNewCard({ name: caption.value, link: imageLink.value })
     .then((data) => {
       const newCardResult = getCardElement(data);
       cardsList.prepend(newCardResult);
+      disableButton(event.submitter, settings);
+      event.target.reset();
+      closeModal(newPostModal);
     })
     .catch(console.error)
     .finally(() => {
@@ -291,10 +296,6 @@ function submitNewPost(event) {
         event.submitter.textContent = "Save";
       }, 1000);
     });
-  disableButton(event.submitter, settings);
-  event.target.reset();
-  event.preventDefault();
-  closeModal(newPostModal);
 }
 
 submitNewPostForm.addEventListener("submit", (event) => {
