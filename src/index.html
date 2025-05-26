@@ -7,26 +7,30 @@
     <meta name="description" content="Spots social media concept." />
     <meta name="keywords" content="HTML, CSS, JavaScript" />
     <link rel="shortcut icon" href="./favicon.ico" />
-    <link rel="stylesheet" href="./pages/index.css" />
     <title>Spots App</title>
   </head>
   <body>
     <div class="page">
       <header class="header">
-        <img
-          class="header__logo"
-          src="./images/logo.svg"
-          alt="The Spots logo"
-        />
+        <img class="header__logo" id="image-logo" alt="The Spots logo" />
       </header>
       <main class="main">
         <section class="profile page__section">
           <div class="profile__bio">
-            <img
-              class="profile__image"
-              src="./images/avatar.jpg"
-              alt="A black and white portrait photo of Bessie Coleman."
-            />
+            <div class="profile__avatar-container">
+              <button class="profile__avatar-btn">
+                <img
+                  class="profile__pencil-icon"
+                  id="image-pencil-white"
+                  src="<%=require('./images/pencil_icon_white.svg')%>"
+                />
+              </button>
+              <img
+                class="profile__image"
+                id="image-avatar"
+                alt="A black and white portrait photo of Bessie Coleman."
+              />
+            </div>
             <div class="profile__texts">
               <div class="profile__text">
                 <h1 class="profile__name">Bessie Coleman</h1>
@@ -35,7 +39,7 @@
               <button class="profile__edit-btn" type="button">
                 <img
                   class="profile__pencil"
-                  src="./images/pencil_icon.svg"
+                  id="image-pencil_icon"
                   alt="A silhouette icon of a pencil."
                 />
                 <span class="profile__edit">Edit Profile</span>
@@ -45,7 +49,7 @@
           <button class="profile__post-btn" type="button">
             <img
               class="profile__plus-btn"
-              src="./images/plus_icon.svg"
+              id="image-plus_icon"
               alt="A plus sign"
             />
             <span class="profile__post-btn-text">New Post</span>
@@ -166,8 +170,58 @@
           ></button>
         </div>
       </div>
+      <!-- DELETE IMAGE MODAL -->
+      <div class="modal modal_type_delete modal_closed" id="delete-modal">
+        <div class="modal__box modal__box_delete">
+          <p class="modal__verify_delete">
+            Are you sure you want to delete this image?
+          </p>
+          <button
+            type="button"
+            class="modal__close-btn modal__close-btn_delete"
+          ></button>
+          <!-- should I use submit btn for the Delete button? Seems like that would be the case!-->
+          <form class="modal__form" name="delete-post" novalidate>
+            <div class="modal__delete-btns">
+              <button
+                type="submit"
+                class="modal__submit-btn modal__submit-btn_delete"
+              >
+                Delete
+              </button>
+              <button
+                type="button"
+                class="modal__cancel modal__close-btn_cancel"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- EDIT AVATAR IMAGE MODAL -->
+      <div class="modal modal_closed" id="avatar-modal">
+        <div class="modal__box">
+          <div class="modal__header">
+            <h2 class="modal__title">Edit profile avatar</h2>
+            <button type="button" class="modal__close-btn"></button>
+          </div>
+          <form class="modal__form" name="edit-avatar" novalidate>
+            <label for="edit-avatar-input" class="modal__label"
+              >Profile Picture
+              <input
+                type="url"
+                id="edit-avatar-input"
+                class="modal__input"
+                placeholder="Paste the link to an image"
+                required
+              />
+              <span id="edit-avatar-input-error" class="modal__error"></span>
+            </label>
+            <button type="submit" class="modal__submit-btn">Save</button>
+          </form>
+        </div>
+      </div>
     </div>
-    <script src="./scripts/validation.js" defer></script>
-    <script src="./scripts/index.js" defer></script>
   </body>
 </html>

@@ -40,10 +40,9 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
-const disableButton = (buttonElement, config) => {
+export const disableButton = (buttonElement, config) => {
   buttonElement.disabled = true;
   buttonElement.classList.add(config.inactiveButtonClass);
-  // console.log(config.inactiveButtonClass);
 };
 
 const toggleButtonState = (inputList, buttonElement, config) => {
@@ -81,11 +80,8 @@ const setEventListeners = (formElement, config) => {
 const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
   formList.forEach((formElement) => {
-    // formElement.addEventListener("submit", function (evt) {
-    //   evt.preventDefault();
-    // });
     setEventListeners(formElement, config);
   });
 };
 
-enableValidation(settings);
+export { settings, enableValidation, resetValidation };
