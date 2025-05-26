@@ -1,4 +1,3 @@
-//ADD FAKE COMMENT FOR PROJECT 9 BRANCH
 import "./index.css";
 import {
   settings,
@@ -76,7 +75,6 @@ function handleDeleteSubmit(event) {
       setButtonText(event, false);
     });
 }
-// disableButton(event.submitter, settings);
 
 deleteForm.addEventListener("submit", handleDeleteSubmit);
 cancelBtn.addEventListener("click", () => closeModal(deleteModal));
@@ -143,7 +141,6 @@ function getCardElement(data) {
     modalImage.src = cardElementImage.src;
     modalImage.alt = cardElementImage.alt;
     modalCaption.textContent = cardElementText.textContent;
-    // console.log(previewModal.classList);
   });
 
   // return the ready HTML element with the filled-in data
@@ -158,12 +155,10 @@ const closeButtons = document.querySelectorAll(".modal__close-btn");
 function openModal(modal) {
   modal.classList.remove("modal_closed");
   document.addEventListener("keydown", handleEscape);
-  // console.log(modal.addEventListener("keydown", handleEscape));
 }
 
 function closeModal(modal) {
   modal.classList.add("modal_closed");
-  // console.log(modal);
   document.removeEventListener("keydown", handleEscape);
 }
 
@@ -243,12 +238,11 @@ function submitProfileForm(event) {
   api
     .editUserInfo({ name: newProfileName.value, about: newProfileDesc.value })
     .then((data) => {
-      // dta arg instead of input values.
+      // data arg instead of input values.
       profileName.textContent = data.name;
       profileDesc.textContent = data.about;
       disableButton(event.submitter, settings);
       closeModal(editModal);
-      // disableButton(modalSubmitBtns);
     })
     .catch(console.error)
     .finally(() => {
