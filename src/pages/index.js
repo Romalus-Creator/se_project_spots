@@ -62,7 +62,7 @@ function handleDeleteCard(cardElement, data) {
 
 function handleDeleteSubmit(event) {
   event.preventDefault();
-
+  setButtonText(event, true);
   api
     .deleteCard(selectedCardId)
     .then(() => {
@@ -73,9 +73,7 @@ function handleDeleteSubmit(event) {
     })
     .catch(console.error)
     .finally(() => {
-      setTimeout(() => {
-        submitBtn.textContent = "Delete";
-      }, 1000);
+      setButtonText(event, false);
     });
 }
 // disableButton(event.submitter, settings);
@@ -211,6 +209,7 @@ editProfileImage.addEventListener("click", () => {
 
 function submitAvatarEdit(event) {
   event.preventDefault();
+  setButtonText(event, true);
   api
     .editAvatar(avatarInput.value)
     .then((data) => {
@@ -221,10 +220,7 @@ function submitAvatarEdit(event) {
     })
     .catch(console.error)
     .finally(() => {
-      setButtonText(event, true);
-      setTimeout(() => {
-        event.submitter.textContent = "Save";
-      }, 1000);
+      setButtonText(event, false);
     });
 }
 
@@ -243,6 +239,7 @@ enableValidation(settings);
 
 function submitProfileForm(event) {
   event.preventDefault();
+  setButtonText(event, true);
   api
     .editUserInfo({ name: newProfileName.value, about: newProfileDesc.value })
     .then((data) => {
@@ -255,10 +252,7 @@ function submitProfileForm(event) {
     })
     .catch(console.error)
     .finally(() => {
-      setButtonText(event, true);
-      setTimeout(() => {
-        event.submitter.textContent = "Save";
-      }, 1000);
+      setButtonText(event, false);
     });
 }
 
@@ -280,6 +274,7 @@ newPostBtn.addEventListener("click", () => {
 
 function submitNewPost(event) {
   event.preventDefault();
+  setButtonText(event, true);
   api
     .postNewCard({ name: caption.value, link: imageLink.value })
     .then((data) => {
@@ -291,15 +286,13 @@ function submitNewPost(event) {
     })
     .catch(console.error)
     .finally(() => {
-      setButtonText(event, true);
-      setTimeout(() => {
-        event.submitter.textContent = "Save";
-      }, 1000);
+      setButtonText(event, false);
     });
 }
 
 submitNewPostForm.addEventListener("submit", (event) => {
   submitNewPost(event);
+  console.log(event);
   // Link to an image form unsplash.com that I used to ensure everything works properly:
   // https://plus.unsplash.com/premium_photo-1734543942836-3f9a0c313da4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxfHx8ZW58MHx8fHx8
 });

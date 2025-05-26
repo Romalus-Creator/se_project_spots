@@ -1,10 +1,19 @@
-export function setButtonText(btn, isLoading) {
-  const submitBtn = btn.submitter;
-  const btnText = submitBtn.textContent;
-  const btnTextLoading = `${btnText.substring(0, btnText.length - 1)}ing...`;
+export function setButtonText(event, isLoading) {
+  const submitBtn = event.submitter;
+  console.log(event);
   if (isLoading) {
-    return (submitBtn.textContent = btnTextLoading);
+    // Set loading state based on button type
+    if (submitBtn.classList.contains("modal__submit-btn_delete")) {
+      submitBtn.textContent = "Deleting...";
+    } else {
+      submitBtn.textContent = "Saving...";
+    }
   } else {
-    return (submitBtn.textContent = btnText);
+    // Reset to original text based on button type
+    if (submitBtn.classList.contains("modal__submit-btn_delete")) {
+      submitBtn.textContent = "Delete";
+    } else {
+      submitBtn.textContent = "Save";
+    }
   }
 }

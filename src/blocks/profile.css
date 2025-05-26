@@ -97,6 +97,8 @@
 }
 
 .profile__edit-btn {
+  display: flex;
+  align-self: flex-start;
   color: #212121;
   font-weight: 500;
   opacity: 70%;
